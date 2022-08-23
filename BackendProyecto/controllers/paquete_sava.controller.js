@@ -67,7 +67,7 @@ exports.filterDate = async(req, res, next) => {
     try {
         var user= jwt.decode(req.header("Authorization"))
         var id = user["id"]
-        const {start, end, order} = req.body;
+        const {start, end} = req.body;
         const parseStart = Date.parse(start);
         const parseEnd = Date.parse(end);
         db.SavaPackage.findAll({
@@ -80,8 +80,7 @@ exports.filterDate = async(req, res, next) => {
                         [Op.lte]: parseEnd
                       }
                 }
-            } ,
-            order: [['arrival_date_destiny', order]]
+            }
         }).then(packages => {
             return res.status(200).json(packages);
         })
