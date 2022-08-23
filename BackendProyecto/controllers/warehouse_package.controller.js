@@ -73,7 +73,7 @@ exports.creationSava=async (req, res, next) => {
                 sava.price=total_price
                 sava.weight=total_weight
                 sava.save()
-                return res.status(200).json(sava);
+                return res.status(200).json({"sava":sava,"paquetes":packages});
             })
         })
     }catch (err) {
