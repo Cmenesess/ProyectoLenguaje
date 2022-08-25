@@ -9,7 +9,7 @@ Mobile application to connect the SavaExpress system with your customers.
 Download or clone this repo by using the link below:
 
 ```
-https://github.com/miglcesp01/sava_mobile.git
+
 ```
 
 **Step 2:**
