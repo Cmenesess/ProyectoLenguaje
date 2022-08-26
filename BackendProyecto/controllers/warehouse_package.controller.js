@@ -58,26 +58,7 @@ exports.creationSava = async (req, res, next) => {
     next(err);
   }
 };
-exports.showByUser = async (req, res, next) => {
-  try {
-    usuario = jwt.decode(req.header("Authorization"));
-    var id = usuario["id"];
-    db.WarehousePackage.findAll({
-      where: {
-        ClientId: id,
-        sava_code: null,
-      },
-      include: {
-        model: db.Image,
-      },
-    }).then((paquetes) => {
-      return res.status(200).json(paquetes);
-    });
-  } catch (err) {
-    console.log(err);
-    next(err);
-  }
-};
+
 exports.createPackage = async (req, res, next) => {
   try {
     form = JSON.parse(req.body.warehouseForm);
@@ -114,7 +95,26 @@ exports.createPackage = async (req, res, next) => {
     next(err);
   }
 };
-
+exports.showByUser = async (req, res, next) => {
+  try {
+    usuario = jwt.decode(req.header("Authorization"));
+    var id = usuario["id"];
+    db.WarehousePackage.findAll({
+      where: {
+        ClientId: id,
+        sava_code: null,
+      },
+      include: {
+        model: db.Image,
+      },
+    }).then((paquetes) => {
+      return res.status(200).json(paquetes);
+    });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
 exports.updatePackage = async (req, res, next) => {
   console.log(req.params.id);
 };
