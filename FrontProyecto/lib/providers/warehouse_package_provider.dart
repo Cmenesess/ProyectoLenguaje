@@ -1,10 +1,10 @@
-// ignore_for_file: always_specify_types, always_declare_return_types
+// ignore_for_file: always_specify_types, always_declare_return_types, prefer_const_declarations
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class WarehousePackageProvider {
-  static final String _baseUrl = 'api.savaexpress.us';
+  static final String _baseUrl = 'localhost:4000';
 
   static getWarehousePackages(String token) async {
     const String segment = '/api/warehouse-packages/user';
