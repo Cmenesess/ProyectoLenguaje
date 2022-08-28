@@ -9,7 +9,7 @@ router.delete(
   "/warehouse-packages/:id",
   WarehousePackageController.deletePackage
 );
-router.get("/warehouse-packages/User", WarehousePackageController.showByUsers);
+router.get("/warehouse-packages/User", WarehousePackageController.showByUser);
 
 router.post("/warehouse/sava", WarehousePackageController.creationSava);
 
