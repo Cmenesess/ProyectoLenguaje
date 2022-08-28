@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasMany(models.WarehousePackage,{foreignKey:'sava_code',sourceKey:'sava_code'})
-      this.belongsTo(models.Client,{foreignKey:'ClientId',sourceKey:"id"})
+      this.belongsTo(models.Client,{foreignKey:'ClientId',targetKey:"username"})
     }
   }
   SavaPackage.init({

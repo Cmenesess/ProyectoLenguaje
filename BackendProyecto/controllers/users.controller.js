@@ -72,6 +72,7 @@ exports.createAdmin = async (req,res,next) => {
 exports.postUser= async(req,res,next)=>{
     try {
         const { correo, password} = req.body;
+        console.log(req.body)
         let user = await db['User'].findOne({
             where:{
                 username:correo,
@@ -79,8 +80,9 @@ exports.postUser= async(req,res,next)=>{
             }
         });
 
-
+        console.log(user);
         const token = await generate_token.generate_login_token(user);
+        console.log(token)
         await db['User'].update({
             token:token
         },{ where: {username: user.username}})

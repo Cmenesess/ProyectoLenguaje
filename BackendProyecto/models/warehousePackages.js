@@ -5,7 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class WarehousePackage extends Model {
     static associate(models) {
-      this.belongsTo(models.Client,{foreignKey:'ClientId'})
+      this.belongsTo(models.Client,{foreignKey:'ClientId',targetKey:'username'})
       this.belongsTo(models.SavaPackage,{foreignKey:'sava_code'})
       this.hasMany(models.Image,{foreignKey:'tracking_number',sourceKey:'tracking_number'})
     }

@@ -36,6 +36,7 @@ exports.generate_login_token = (user) => {
     );
     return token;
   }catch(err){
+    console.log(err)
     next(err);
   }
 };
