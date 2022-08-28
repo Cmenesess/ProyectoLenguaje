@@ -72,7 +72,6 @@ class _WarehousePackageWidgetState extends State<WarehousePackageWidget> {
                                   widget.removePackage(
                                       widget.details['tracking_number']);
                                 }
-
                                 setState(() {
                                   _value = value;
                                 });
