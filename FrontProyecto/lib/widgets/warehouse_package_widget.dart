@@ -12,8 +12,8 @@ class WarehousePackageWidget extends StatefulWidget {
   final String tracking_number;
   final dynamic details;
   bool needCheck = true;
-  final StringCallback addPackage;
-  final StringCallback removePackage;
+  final Function(String, double) addPackage;
+  final Function(String, double) removePackage;
   WarehousePackageWidget(
       {Key? key,
       required this.addPackage,
@@ -43,7 +43,6 @@ class _WarehousePackageWidgetState extends State<WarehousePackageWidget> {
         child: ClipRRect(
           // Los bordes del contenido del card se cortan usando BorderRadius
           borderRadius: BorderRadius.circular(15),
-
           // EL widget hijo que será recortado segun la propiedad anterior
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,10 +66,12 @@ class _WarehousePackageWidgetState extends State<WarehousePackageWidget> {
                               onChanged: (value) {
                                 if (value!) {
                                   widget.addPackage(
-                                      widget.details['tracking_number']);
+                                      widget.details['tracking_number'],
+                                      double.parse(widget.details["price"]));
                                 } else {
                                   widget.removePackage(
-                                      widget.details['tracking_number']);
+                                      widget.details['tracking_number'],
+                                      double.parse(widget.details["price"]));
                                 }
                                 setState(() {
                                   _value = value;

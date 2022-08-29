@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, always_specify_types, use_build_context_synchronously, unused_local_variable
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -19,18 +19,21 @@ class PackagesClientScreen extends StatefulWidget {
 
 class _PackagesClientScreenState extends State<PackagesClientScreen> {
   dynamic packages = [];
+  dynamic price = 0.0;
   dynamic packages_availables = [];
 
-  void addPackage(String newId) {
+  void addPackage(String newId, double addPrice) {
     setState(() {
       packages.add(newId);
-      print(packages);
+      price += addPrice;
+      print(price);
     });
   }
 
-  void deletePackage(String newId) {
+  void deletePackage(String newId, double minusPrice) {
     setState(() {
       packages.remove(newId);
+      price -= minusPrice;
     });
   }
 
@@ -57,10 +60,8 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
       Container(
           child: packages.isNotEmpty
               ? Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Expanded(
-                      child: Container(),
-                    ),
                     TextButton(
                       style: ButtonStyle(
                           backgroundColor:
@@ -86,7 +87,7 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
                 )
               : null),
       Text(
-        "Paquetes enviados",
+        "Selecciona los paquetes a enviar",
         style:
             TextStyle(fontSize: 30, color: Color.fromARGB(255, 22, 102, 168)),
       ),
