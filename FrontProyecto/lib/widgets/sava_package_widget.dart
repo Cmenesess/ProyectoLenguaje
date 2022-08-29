@@ -91,7 +91,7 @@ class _SavaPackageWidgetState extends State<SavaPackageWidget> {
                             images: images,
                             numeroRastreo: widget.details['sava_code'],
                             posicionActual: 'Viajando',
-                            peso: "${widget.details['wight']} lb",
+                            peso: "${widget.details['weight']} lb",
                             precio: "${widget.details['price']}",
                             fecha: widget.details['arrival_date_destiny'] ??
                                 "Sin fecha de llegada",

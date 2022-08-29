@@ -60,25 +60,22 @@ class _WarehousePackageWidgetState extends State<WarehousePackageWidget> {
                       ),
                     ),
                     Container(
-                      child: widget.needCheck == true
-                          ? Checkbox(
-                              value: _value,
-                              onChanged: (value) {
-                                if (value!) {
-                                  widget.addPackage(
-                                      widget.details['tracking_number'],
-                                      double.parse(widget.details["price"]));
-                                } else {
-                                  widget.removePackage(
-                                      widget.details['tracking_number'],
-                                      double.parse(widget.details["price"]));
-                                }
-                                setState(() {
-                                  _value = value;
-                                });
-                              })
-                          : null,
-                    )
+                        child: Checkbox(
+                            value: _value,
+                            onChanged: (bool? value) {
+                              if (value!) {
+                                widget.addPackage(
+                                    widget.details['tracking_number'],
+                                    double.parse(widget.details["price"]));
+                              } else {
+                                widget.removePackage(
+                                    widget.details['tracking_number'],
+                                    double.parse(widget.details["price"]));
+                              }
+                              setState(() {
+                                _value = value;
+                              });
+                            }))
                   ],
                 ),
               ),
