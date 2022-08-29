@@ -80,6 +80,7 @@ class _SavaPackagesClientScreenState extends State<SavaPackagesClientScreen> {
               TextStyle(fontSize: 30, color: Color.fromARGB(255, 22, 102, 168)),
         ),
         ListView.builder(
+            controller: ScrollController(),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemCount: packages.length,

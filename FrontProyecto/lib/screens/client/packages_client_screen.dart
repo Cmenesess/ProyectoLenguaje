@@ -66,9 +66,11 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
                     var response =
                         await WarehousePackageProvider.createSavaPackages(
                             packages);
+                    String sava_code = response['sava_code'];
                     Navigator.of(context).pop();
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Paquete creado correctamente')));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content:
+                            Text('Creado paquete sava con codigo $sava_code')));
                     Navigator.popAndPushNamed(context, "home_client");
                   },
                   child: Text("Si")),
@@ -86,54 +88,69 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(children: [
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            "Selecciona los paquetes a enviar",
-            style: TextStyle(
-                fontSize: 30, color: Color.fromARGB(255, 22, 102, 168)),
-            textAlign: TextAlign.center,
+      if (packages_availables.length > 0)
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              "Selecciona los paquetes a enviar",
+              style: TextStyle(
+                  fontSize: 30, color: Color.fromARGB(255, 22, 102, 168)),
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
-      ),
-      Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Text(
-                  "Total \$ $price",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
-                ),
+      packages_availables.length > 0
+          ? Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(
+                        "Total \$ $price",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.yellow)),
+                    onPressed: () async {
+                      if (packages.length > 0) {
+                        createSava();
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                duration: Duration(seconds: 1),
+                                content: Text(
+                                    'Debe seleccionar al menos un paquete')));
+                      }
+                    },
+                    child: Text(
+                      "NumeroSeleccionados (${packages.length})",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  )
+                ],
               ),
-            ),
-            TextButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.yellow)),
-              onPressed: () async {
-                if (packages.length > 0) {
-                  createSava();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      duration: Duration(seconds: 1),
-                      content: Text('Debe seleccionar al menos un paquete')));
-                }
-              },
-              child: Text(
-                "NumeroSeleccionados (${packages.length})",
-                style: TextStyle(color: Colors.black),
-              ),
-            ),
-            SizedBox(
-              width: 20,
             )
-          ],
-        ),
-      ),
+          : Padding(
+              padding: const EdgeInsets.symmetric(vertical: 100),
+              child: SizedBox(
+                  width: 300,
+                  child: Text(
+                    "No hay paquetes para enviar",
+                    style: TextStyle(fontSize: 30),
+                    textAlign: TextAlign.center,
+                  )),
+            ),
       ListView.builder(
           controller: ScrollController(),
           scrollDirection: Axis.vertical,
