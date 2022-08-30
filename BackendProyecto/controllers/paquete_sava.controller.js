@@ -45,17 +45,33 @@ exports.Modify = async(req,res,next)=>{
         next(err);
     }
 }
-exports.orderDate = async(req, res, next) => {
+exports.orderASCDate = async(req, res, next) => {
     try {
         var user= jwt.decode(req.header("Authorization"))
-        var id = user["id"]
-        const order = req.body.order;
+        var id = user["id"];
         db.SavaPackage.findAll({
             where: {
                 ClientId:id,
                 status: 'Entregado'
             } ,
-            order: [['arrival_date_destiny', order]]
+            order: [['arrival_date_destiny', "ASC"]]
+        }).then(packages => {
+            return res.status(200).json(packages);
+        })
+    }catch(err) {
+        next(err);
+    }
+}
+exports.orderDESCDate = async(req, res, next) => {
+    try {
+        var user= jwt.decode(req.header("Authorization"))
+        var id = user["id"];
+        db.SavaPackage.findAll({
+            where: {
+                ClientId:id,
+                status: 'Entregado'
+            } ,
+            order: [['arrival_date_destiny', "DESC"]]
         }).then(packages => {
             return res.status(200).json(packages);
         })
@@ -67,7 +83,8 @@ exports.filterDate = async(req, res, next) => {
     try {
         var user= jwt.decode(req.header("Authorization"))
         var id = user["id"]
-        const {start, end} = req.body;
+        const start = req.params.start;
+        const end = req.params.end;
         const parseStart = Date.parse(start);
         const parseEnd = Date.parse(end);
         db.SavaPackage.findAll({

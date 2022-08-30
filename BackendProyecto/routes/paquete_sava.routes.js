@@ -6,8 +6,9 @@ router.get('/', PaqueteSavaController.list);
 router.get('/all',PaqueteSavaController.listAll);
 router.put("/edit",PaqueteSavaController.Modify);
 router.get('/history',PaqueteSavaController.filterDelivered);
-router.get('/orderHistory',PaqueteSavaController.orderDate);
-router.get('/betweenHistory',PaqueteSavaController.filterDate);
+router.get('/orderASCHistory',PaqueteSavaController.orderASCDate);
+router.get('/orderDESCHistory',PaqueteSavaController.orderDESCDate);
+router.get('/betweenHistory/:start/:end',PaqueteSavaController.filterDate);
 
 
 
