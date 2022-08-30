@@ -43,7 +43,7 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
   }
 
   final appBar = AppBar(
-    elevation: 10,
+    elevation: 0,
     centerTitle: true,
     backgroundColor: Color.fromARGB(255, 12, 108, 203),
     title: const Text(
