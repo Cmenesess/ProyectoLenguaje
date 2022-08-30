@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class WarehousePackageProvider {
-  static final String _baseUrl = '192.168.100.5:4000';
+  // Cambiar URL =
+  static final String _baseUrl = '192.168.1.4:4000';
 
   static getWarehousePackages(String token) async {
     const String segment = '/api/warehouse-packages/user';

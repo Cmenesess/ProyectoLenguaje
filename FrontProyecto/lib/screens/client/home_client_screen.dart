@@ -75,6 +75,7 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar,
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
@@ -92,8 +93,7 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
                 label: "Envíos",
                 icon: ImageIcon(AssetImage("assets/avion.png"))),
             BottomNavigationBarItem(
-                label: "Historial",
-                icon: Icon(Icons.history)),
+                label: "Historial", icon: Icon(Icons.history)),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'Perfil',
