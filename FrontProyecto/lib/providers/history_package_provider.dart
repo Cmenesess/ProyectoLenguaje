@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class HistoryPackageProvider {
-  static final String _baseUrl = '192.168.100.5:4000';
+  static final String _baseUrl = 'localhost:4000';
 
   static getHistoryPackages(String token) async {
     const String segment = '/savaPackage/history';
@@ -31,7 +31,8 @@ class HistoryPackageProvider {
     return jsonDecoded;
   }
 
-  static getHistoryPackagesBetweenDates(String token, String start, String end) async {
+  static getHistoryPackagesBetweenDates(
+      String token, String start, String end) async {
     final queryParameters = {
       'start': start,
       'end': end,
