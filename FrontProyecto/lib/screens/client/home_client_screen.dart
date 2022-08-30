@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, always_specify_types, unused_import, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sava_mobile/models/dosage_model.dart';
 import 'package:sava_mobile/providers/warehouse_package_provider.dart';
@@ -28,6 +27,7 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
   final screens = [
     PackagesClientScreen(),
     SavaPackagesClientScreen(),
+    HistorialClientScreen()
   ];
 
   //Shared Preferences
@@ -43,7 +43,7 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
   }
 
   final appBar = AppBar(
-    elevation: 0.0,
+    elevation: 10,
     centerTitle: true,
     backgroundColor: Color.fromARGB(255, 12, 108, 203),
     title: const Text(
@@ -75,7 +75,6 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar,
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
@@ -92,6 +91,9 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
             BottomNavigationBarItem(
                 label: "Envíos",
                 icon: ImageIcon(AssetImage("assets/avion.png"))),
+            BottomNavigationBarItem(
+                label: "Historial",
+                icon: Icon(Icons.history)),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'Perfil',
