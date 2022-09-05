@@ -104,7 +104,7 @@ class _SavaPackagesClientScreenState extends State<SavaPackagesClientScreen> {
                             newList = packages;
                           } else {
                             for (dynamic element in packages) {
-                              if (element['sava_code'].contains(value)) {
+                              if (element['sava_code'].startsWith(value)) {
                                 newList.add(element);
                               }
                             }
