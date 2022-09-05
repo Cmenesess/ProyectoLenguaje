@@ -20,8 +20,7 @@ class _SavaPackageWidgetState extends State<SavaPackageWidget> {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color:
-            _value == true ? Color.fromARGB(255, 177, 193, 205) : Colors.white,
+        color: _value == true ? Colors.indigo[900] : Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         margin: EdgeInsets.all(15),
         elevation: 10,
@@ -42,9 +41,8 @@ class _SavaPackageWidgetState extends State<SavaPackageWidget> {
                     Expanded(
                       child: Text(
                         "Paquete",
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Color.fromARGB(255, 40, 133, 210)),
+                        style:
+                            TextStyle(fontSize: 25, color: Colors.indigo[900]),
                       ),
                     ),
                   ],
@@ -55,7 +53,7 @@ class _SavaPackageWidgetState extends State<SavaPackageWidget> {
                 child: Text(
                   this.widget.details['sava_code'],
                   style: TextStyle(
-                      fontSize: 25, color: Color.fromARGB(255, 115, 123, 130)),
+                      fontSize: 25, color: Color.fromARGB(255, 0, 0, 0)),
                 ),
               ),
               Padding(
@@ -63,7 +61,7 @@ class _SavaPackageWidgetState extends State<SavaPackageWidget> {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: StepProgressIndicator(
                   totalSteps: 10,
-                  currentStep: 6,
+                  currentStep: 2,
                   selectedColor: Color.fromARGB(255, 254, 229, 5),
                   unselectedColor: Color.fromARGB(255, 190, 189, 189),
                 ),
@@ -75,13 +73,11 @@ class _SavaPackageWidgetState extends State<SavaPackageWidget> {
                     Expanded(
                         child: Text(
                       this.widget.details['status'],
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Color.fromARGB(255, 80, 159, 222)),
+                      style: TextStyle(fontSize: 20, color: Colors.indigo[900]),
                     )),
                     IconButton(
                       icon: Icon(Icons.keyboard_double_arrow_right),
-                      color: Color.fromARGB(255, 15, 96, 162),
+                      color: Colors.indigo[900],
                       onPressed: () async {
                         dynamic images = [];
                         this.widget.details['WarehousePackages'].forEach((v) {
