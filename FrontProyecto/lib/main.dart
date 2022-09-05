@@ -12,6 +12,7 @@ class SavaExpressApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(dividerColor: Colors.black),
       debugShowCheckedModeBanner: false,
       title: 'SavaExpress',
       initialRoute: "login",

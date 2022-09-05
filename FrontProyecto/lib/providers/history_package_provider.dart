@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class HistoryPackageProvider {
-  static final String _baseUrl = 'localhost:4000';
+  static final String _baseUrl = '192.168.1.6:4000';
 
   static getHistoryPackages(String token) async {
     const String segment = '/savaPackage/history';
