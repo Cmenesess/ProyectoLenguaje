@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:sava_mobile/models/dosage_model.dart';
 import 'package:sava_mobile/providers/warehouse_package_provider.dart';
 import 'package:sava_mobile/screens/ProfileScreen.dart';
+import 'package:sava_mobile/screens/new_Profile_screen.dart';
+
 import 'package:sava_mobile/screens/client/sava_packages_client_screen.dart';
 import 'package:sava_mobile/widgets/warehouse_package_widget.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -35,9 +37,12 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
 
   @override
   void initState() {
-    screens.add(ProfileScreen(
+    screens
+        .add(ProfilePage() /* ProfileScreen(
       key: _MyWidgetState,
-    ));
+    )*/
+
+            );
 
     super.initState();
   }

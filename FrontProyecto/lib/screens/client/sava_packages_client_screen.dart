@@ -65,7 +65,9 @@ class _SavaPackagesClientScreenState extends State<SavaPackagesClientScreen> {
                           )),
                       child: Row(children: [
                         Expanded(
-                          child: TextFormField(),
+                          child: TextFormField(
+                            onChanged: (value) {},
+                          ),
                         ),
                         Icon(Icons.search)
                       ]),
