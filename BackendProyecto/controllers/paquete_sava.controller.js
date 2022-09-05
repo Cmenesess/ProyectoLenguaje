@@ -108,6 +108,7 @@ exports.filterDate = async(req, res, next) => {
 exports.filterDelivered = async(req, res, next) => {
     try {
         var user= jwt.decode(req.header("Authorization"))
+        console.log(user)
         var id = user["id"]
         db.SavaPackage.findAll({
             where: {

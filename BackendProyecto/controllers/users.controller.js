@@ -71,6 +71,23 @@ exports.createAdmin = async (req,res,next) => {
         next(err);
     }
 }
+exports.getInfoClient=async(req,res,next)=>{
+    try{
+        const { token} = req.body;
+        let user = await db['User'].findOne({
+            where:{
+                token:token,
+            },
+            include:[
+                {model: db.Client}
+            ]
+        });
+        return res.json({username: user.username,phone:user.phoneNumber,sentPackages:user.Clients[0].sentPackages}).status(204);
+    }catch(err){
+        console.log(err)
+        return res.json({token: 'error', message: 'Credenciales no coinciden'}).status(204);
+    }
+}
 exports.postUser= async(req,res,next)=>{
     try {
         const { correo, password} = req.body;

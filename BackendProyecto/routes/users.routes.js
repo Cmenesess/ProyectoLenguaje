@@ -7,6 +7,7 @@ router.post('/admin',userController.createAdmin);
 router.post('/userConfirmation', userController.postUser);
 router.get('/',userController.showUser)
 router.get("/clients",userController.showClients)
+router.post("/infoClient",userController.getInfoClient)
 router.delete('/',userController.deleteUser)
 
 module.exports = router;

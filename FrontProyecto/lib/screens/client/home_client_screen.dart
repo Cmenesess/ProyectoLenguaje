@@ -1,11 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, always_specify_types, unused_import, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, always_specify_types, unused_import, non_constant_identifier_names, always_use_package_imports
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sava_mobile/models/dosage_model.dart';
 import 'package:sava_mobile/providers/warehouse_package_provider.dart';
 import 'package:sava_mobile/screens/ProfileScreen.dart';
-import 'package:sava_mobile/screens/new_Profile_screen.dart';
 
 import 'package:sava_mobile/screens/client/sava_packages_client_screen.dart';
 import 'package:sava_mobile/widgets/warehouse_package_widget.dart';
@@ -37,12 +36,7 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
 
   @override
   void initState() {
-    screens
-        .add(ProfilePage() /* ProfileScreen(
-      key: _MyWidgetState,
-    )*/
-
-            );
+    screens.add(ProfilePage());
 
     super.initState();
   }

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_declarations, always_specify_types, unused_element
+// ignore_for_file: prefer_const_declarations, always_specify_types, unused_element, always_declare_return_types
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -16,6 +16,17 @@ class UserProvider {
     const String segment = '/auth';
     var url = Uri.http(_baseUrl, segment);
     final body = {"correo": correo, "password": password};
+    final jsonString = json.encode(body);
+    final response = await http.post(url,
+        headers: {'Content-Type': 'application/json'}, body: jsonString);
+    final jsonDecoded = json.decode(response.body);
+    return jsonDecoded;
+  }
+
+  static infoClient(String? token) async {
+    const String segment = '/users/infoClient';
+    var url = Uri.http(_baseUrl, segment);
+    final body = {"token": token};
     final jsonString = json.encode(body);
     final response = await http.post(url,
         headers: {'Content-Type': 'application/json'}, body: jsonString);

@@ -25,7 +25,6 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
     setState(() {
       packages.add(newId);
       price += addPrice;
-      print(price);
     });
   }
 
@@ -56,7 +55,7 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
     showDialog(
         context: context,
         builder: (BuildContext ctx) {
-          return AlertDialog(
+          return CupertinoAlertDialog(
             title: const Text('Confirme'),
             content: const Text(
                 'Desea enviar todos esos paquetes seleccionados a Ecuador?'),

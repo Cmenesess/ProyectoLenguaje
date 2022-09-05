@@ -76,7 +76,8 @@ class _HistorialClientScreenState extends State<HistorialClientScreen> {
       prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('token');
       dynamic response =
-          await HistoryPackageProvider.getHistoryPackagesBetweenDates(token!, start, end);
+          await HistoryPackageProvider.getHistoryPackagesBetweenDates(
+              token!, start, end);
       packages = response;
       setState(() {});
     });
@@ -126,25 +127,25 @@ class _HistorialClientScreenState extends State<HistorialClientScreen> {
                       fontWeight: FontWeight.bold),
                 ),
                 DropdownButton(
-                    value: dropValue,
-                    icon: Icon(
-                      Icons.sort_rounded,
-                      color: Colors.white,
-                    ),
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropValue = newValue!;
-                        getOrderPackages(dropValue);
-                      });
-                    },
-                    items: ["ASC", "DESC"].map((String value) {
-                      return DropdownMenuItem(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                  value: dropValue,
+                  icon: Icon(
+                    Icons.sort_rounded,
+                    color: Colors.white,
                   ),
+                  style: TextStyle(color: Colors.blue[300], fontSize: 20),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropValue = newValue!;
+                      getOrderPackages(dropValue);
+                    });
+                  },
+                  items: ["ASC", "DESC"].map((String value) {
+                    return DropdownMenuItem(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
               ],
             ),
           ),
@@ -182,7 +183,8 @@ class _HistorialClientScreenState extends State<HistorialClientScreen> {
               ),
               MaterialButton(
                 onPressed: () {
-                  getBetweenPackages(_startDate.toString(), _endDate.toString());
+                  getBetweenPackages(
+                      _startDate.toString(), _endDate.toString());
                 },
                 child: Center(
                   child: Text(

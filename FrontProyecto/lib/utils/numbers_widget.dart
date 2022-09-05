@@ -1,16 +1,24 @@
+// ignore_for_file: always_specify_types, prefer_typing_uninitialized_variables, always_put_required_named_parameters_first, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class NumbersWidget extends StatelessWidget {
+  final int sentPackages;
+  final String phone;
+  const NumbersWidget({
+    required this.sentPackages,
+    required this.phone,
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) => IntrinsicHeight(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            buildStatistic(context, '98%', 'Paquetes '),
+            buildStatistic(context, phone, 'Telefono'),
             buildDivider(),
-            buildStatistic(context, '8', 'Paquetes '),
-            buildDivider(),
-            buildStatistic(context, '100%', 'Satisfacción'),
+            buildStatistic(context, "$sentPackages", 'Paquetes Enviados'),
           ],
         ),
       );
