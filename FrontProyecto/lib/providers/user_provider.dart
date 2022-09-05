@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class UserProvider {
-  static final String _baseUrl = '192.168.1.6:4000';
+  static final String _baseUrl = '192.168.0.107:4000';
 
   Future<String> _getJsonData(String segment) async {
     var url = Uri.http(_baseUrl, segment);

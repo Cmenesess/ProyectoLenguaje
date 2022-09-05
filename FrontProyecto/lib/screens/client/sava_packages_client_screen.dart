@@ -16,7 +16,7 @@ class SavaPackagesClientScreen extends StatefulWidget {
 }
 
 class _SavaPackagesClientScreenState extends State<SavaPackagesClientScreen> {
-  dynamic packages = [];
+  List<dynamic> packages = [];
 
   //Shared Preferences
   late SharedPreferences prefs;
@@ -29,9 +29,7 @@ class _SavaPackagesClientScreenState extends State<SavaPackagesClientScreen> {
       String? token = prefs.getString('token');
       dynamic response = await WarehousePackageProvider.getSavaPackages(token!);
       packages = response;
-      setState(() {
-        print(packages);
-      });
+      setState(() {});
     });
   }
 
@@ -92,13 +90,28 @@ class _SavaPackagesClientScreenState extends State<SavaPackagesClientScreen> {
                     Expanded(
                       child: TextFormField(
                         onChanged: (value) {
-                          setState(() {
-                            for (var element in packages) {
-                              print(element);
-                            }
-                            ;
-                          });
                           print(value);
+                          dynamic newList = [];
+                          if (value == '') {
+                            Future.delayed(Duration.zero, () async {
+                              prefs = await SharedPreferences.getInstance();
+                              String? token = prefs.getString('token');
+                              dynamic response = await WarehousePackageProvider
+                                  .getSavaPackages(token!);
+                              packages = response;
+                              setState(() {});
+                            });
+                            newList = packages;
+                          } else {
+                            for (dynamic element in packages) {
+                              if (element['sava_code'].contains(value)) {
+                                newList.add(element);
+                              }
+                            }
+                          }
+                          setState(() {
+                            packages = newList;
+                          });
                         },
                       ),
                     ),
