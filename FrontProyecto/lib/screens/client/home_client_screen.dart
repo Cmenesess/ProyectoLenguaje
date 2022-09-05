@@ -75,7 +75,6 @@ class _HomeClientScreenState extends State<HomeClientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar,
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,

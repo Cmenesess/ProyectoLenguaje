@@ -26,7 +26,7 @@ class UserProvider {
   static createUser(String address, String correo, String password) async {
     const String segment = '/users/client';
     var url = Uri.http(_baseUrl, segment);
-    final body = {"correo": correo, "direccion": address, "password": password};
+    final body = {"correo": correo, "telefono": address, "password": password};
     final jsonString = json.encode(body);
     final response = await http.post(url,
         headers: {'Content-Type': 'application/json'}, body: jsonString);

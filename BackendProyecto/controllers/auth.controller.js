@@ -1,5 +1,6 @@
 const db = require('../models/index');
 const generate_token = require('../Middleware/generate_token');
+var bcrypt = require('bcryptjs');
 
 exports.findOneLogin = async (req,res,next) => {
     try{
@@ -20,7 +21,7 @@ exports.findOneLogin = async (req,res,next) => {
             })
         }
         
-        const password_valid = password==userLogin.password;
+        const password_valid = bcrypt.compareSync(password, userLogin.password);;
         if (!password_valid) {
             return res.status(401).json({
             status: 401,

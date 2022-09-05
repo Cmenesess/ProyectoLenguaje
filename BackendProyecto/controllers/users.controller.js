@@ -1,11 +1,13 @@
 const db = require('../models/index');
 const generate_token = require('../Middleware/generate_token');
 const {CLIENTE,ADMINISTRADOR} = require('../constants/roles.constants');
+var bcrypt = require('bcryptjs');
 
 
 exports.createClient = async (req,res,next) => {
     try {
         const { correo, password,telefono} = req.body;
+        var hash = bcrypt.hashSync(password, 8);
         const result = await db.sequelize.transaction(async (t) => {
             let findPerson = await db['User'].findOne({
                 where:{
@@ -14,10 +16,10 @@ exports.createClient = async (req,res,next) => {
             });
 
             if (findPerson != null) {
-                return res.json({message: 'Usuario ya registrado'}).status(204);
+                return res.json({message: 'Usuario ya registrado',status:204}).status(204);
             }
             let newPerson = await db['User'].create({
-                password:password,
+                password:hash,
                 phoneNumber:telefono,
                 role: CLIENTE,
                 username: correo
@@ -31,7 +33,7 @@ exports.createClient = async (req,res,next) => {
                 token:token
             },{transaction:t, where: {username: newPerson.username}})
 
-            return res.json({message: 'Creacion completa'}).status(201);
+            return res.json({message: 'Creacion completa',status:201}).status(201);
         })
     }catch(err){
         console.log(err)

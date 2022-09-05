@@ -88,15 +88,45 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(children: [
+      Container(
+        height: 120,
+        padding: EdgeInsets.all(10),
+        alignment: Alignment.bottomCenter,
+        width: double.infinity,
+        decoration: BoxDecoration(color: Colors.indigo[900], boxShadow: [
+          BoxShadow(
+            offset: Offset(3, 0),
+            spreadRadius: -3,
+            blurRadius: 5,
+            color: Color.fromRGBO(0, 0, 0, 1),
+          )
+        ]),
+        child: SafeArea(
+          child: Text(
+            "Bodega",
+            style: TextStyle(
+                color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
       if (packages_availables.length > 0)
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        Container(
+          height: 50,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(color: Colors.indigo[900], boxShadow: [
+            BoxShadow(
+              offset: Offset(3, 0),
+              spreadRadius: -3,
+              blurRadius: 5,
+              color: Color.fromRGBO(0, 0, 0, 1),
+            )
+          ]),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Text(
-              "Selecciona los paquetes a enviar",
-              style: TextStyle(
-                  fontSize: 30, color: Color.fromARGB(255, 22, 102, 168)),
+              "Enviar a Ecuador",
+              style: TextStyle(fontSize: 25, color: Colors.white),
               textAlign: TextAlign.center,
             ),
           ),
@@ -131,8 +161,8 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
                       }
                     },
                     child: Text(
-                      "NumeroSeleccionados (${packages.length})",
-                      style: TextStyle(color: Colors.black),
+                      "Realizar envio (${packages.length})",
+                      style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                   ),
                   SizedBox(
@@ -152,6 +182,7 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
                   )),
             ),
       ListView.builder(
+          padding: EdgeInsets.zero,
           controller: ScrollController(),
           scrollDirection: Axis.vertical,
           shrinkWrap: true,

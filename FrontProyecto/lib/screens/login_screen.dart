@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
         keyboardType: TextInputType.emailAddress,
         validator: (value) {
           if (value!.isEmpty) {
-            return ("Please Enter Your Email");
+            return ("Porfavor ingrese su correo");
           }
           return null;
         },
@@ -53,6 +53,12 @@ class _LoginScreenState extends State<LoginScreen> {
         autofocus: false,
         controller: passwordController,
         obscureText: true,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return ("Porfavor ingrese una contraseña");
+          }
+          return null;
+        },
         onSaved: (value) {
           passwordController.text = value!;
         },
@@ -76,17 +82,20 @@ class _LoginScreenState extends State<LoginScreen> {
           onPressed: () async {
             String correo = emailController.text;
             String password = passwordController.text;
-            var response = await UserProvider.loginUser(correo, password);
-            if (response['status'] == 200) {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setString("token", response['payload']['token']);
-              Navigator.popAndPushNamed(context, "home_client");
-            } else if (response['status'] == 400 || response['status'] == 401) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Credenciales incorrectas')));
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Error interno del servidor')));
+            if (_formKey.currentState!.validate()) {
+              var response = await UserProvider.loginUser(correo, password);
+              if (response['status'] == 200) {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setString("token", response['payload']['token']);
+                Navigator.popAndPushNamed(context, "home_client");
+              } else if (response['status'] == 400 ||
+                  response['status'] == 401) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Credenciales incorrectas')));
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Error interno del servidor')));
+              }
             }
           },
           child: Text(
@@ -104,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Container(
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(36.0),
+              padding: const EdgeInsets.all(25.0),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -112,16 +121,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
-                          height: 200,
+                          height: 180,
                           child: Image.asset(
                             "assets/logo.png",
                             fit: BoxFit.contain,
                           )),
-                      SizedBox(height: 45),
+                      SizedBox(height: 40),
                       emailField,
                       SizedBox(height: 25),
                       passwordField,
-                      SizedBox(height: 35),
+                      SizedBox(height: 40),
                       loginButton,
                       SizedBox(height: 15),
                       Row(

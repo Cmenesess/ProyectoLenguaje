@@ -18,7 +18,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   // our form key
   final _formKey = GlobalKey<FormState>();
   // editing Controller
-  final TextEditingController addressEditingController =
+  final TextEditingController phoneEditingController =
       new TextEditingController();
   final TextEditingController emailEditingController =
       new TextEditingController();
@@ -86,17 +86,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ));
 
     // address field
-    final addressField = TextFormField(
+    final phoneField = TextFormField(
         autofocus: false,
-        controller: addressEditingController,
+        controller: phoneEditingController,
         onSaved: (value) {
-          addressEditingController.text = value!;
+          phoneEditingController.text = value!;
+        },
+        validator: (value) {
+          RegExp regex = new RegExp('^09[0-9]{8}');
+          if (value!.isEmpty) {
+            return ("Deber ingresar un numero valido de Ecuador");
+          }
+          if (!regex.hasMatch(value)) {
+            return ("El formato del numero debe ser con 09");
+          }
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.vpn_key),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Dirección",
+          hintText: "Numero Telefono",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -138,21 +147,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           onPressed: () async {
             String correo = emailEditingController.text;
             String password = passwordEditingController.text;
-            String address = addressEditingController.text;
+            String telefono = phoneEditingController.text;
             String confirmPassword = confirmPasswordEditingController.text;
 
             if (password != confirmPassword) {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Las contraseñas ingresadas no coinciden')));
-            } else {
+            }
+            if (_formKey.currentState!.validate()) {
               var response =
-                  await UserProvider.createUser(address, correo, password);
-              if (response['status'] == 200) {
+                  await UserProvider.createUser(telefono, correo, password);
+
+              if (response['status'] == 201) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Se creo su usuario exitosamente')));
                 Navigator.popAndPushNamed(context, "login");
               } else if (response['status'] == 400 ||
-                  response['status'] == 401) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Credenciales incorrectas')));
+                  response['status'] == 204) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text('Ya existe ese usuario con ese correo')));
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('Error interno del servidor')));
@@ -169,10 +182,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -191,15 +200,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           "assets/logo.png",
                           fit: BoxFit.contain,
                         )),
-                    SizedBox(height: 45),
+                    SizedBox(height: 30),
                     emailField,
                     SizedBox(height: 20),
-                    addressField,
+                    phoneField,
                     SizedBox(height: 20),
                     passwordField,
                     SizedBox(height: 20),
                     confirmPasswordField,
-                    SizedBox(height: 20),
+                    SizedBox(height: 40),
                     signUpButton,
                     SizedBox(height: 15),
                   ],
