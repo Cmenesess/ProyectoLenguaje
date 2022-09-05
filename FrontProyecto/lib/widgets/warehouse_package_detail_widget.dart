@@ -59,8 +59,7 @@ class _TextDialogWidgetState extends State<TextDialogWidget> {
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text("Número de rastreo",
-                style: TextStyle(
-                    fontSize: 25, color: Color.fromARGB(255, 15, 96, 162))),
+                style: TextStyle(fontSize: 25, color: Colors.indigo[900])),
             Text(widget.numeroRastreo,
                 style: TextStyle(
                     fontSize: 20, color: Color.fromARGB(255, 51, 50, 50))),
@@ -71,8 +70,7 @@ class _TextDialogWidgetState extends State<TextDialogWidget> {
               endIndent: 10,
             ),
             Text("Posición actual",
-                style: TextStyle(
-                    fontSize: 25, color: Color.fromARGB(255, 15, 96, 162))),
+                style: TextStyle(fontSize: 25, color: Colors.indigo[900])),
             Text(widget.posicionActual,
                 style: TextStyle(
                     fontSize: 20, color: Color.fromARGB(255, 51, 50, 50))),
@@ -83,8 +81,7 @@ class _TextDialogWidgetState extends State<TextDialogWidget> {
               endIndent: 10,
             ),
             Text("Peso",
-                style: TextStyle(
-                    fontSize: 25, color: Color.fromARGB(255, 15, 96, 162))),
+                style: TextStyle(fontSize: 25, color: Colors.indigo[900])),
             Text(widget.peso,
                 style: TextStyle(
                     fontSize: 20, color: Color.fromARGB(255, 51, 50, 50))),
@@ -95,8 +92,7 @@ class _TextDialogWidgetState extends State<TextDialogWidget> {
               endIndent: 10,
             ),
             Text("Precio",
-                style: TextStyle(
-                    fontSize: 25, color: Color.fromARGB(255, 15, 96, 162))),
+                style: TextStyle(fontSize: 25, color: Colors.indigo[900])),
             Text('\$${widget.precio}',
                 style: TextStyle(
                     fontSize: 20, color: Color.fromARGB(255, 51, 50, 50))),
@@ -107,8 +103,7 @@ class _TextDialogWidgetState extends State<TextDialogWidget> {
               endIndent: 10,
             ),
             Text("Fecha estimada de llegada",
-                style: TextStyle(
-                    fontSize: 25, color: Color.fromARGB(255, 15, 96, 162))),
+                style: TextStyle(fontSize: 25, color: Colors.indigo[900])),
             Text(widget.fecha,
                 style: TextStyle(
                     fontSize: 20, color: Color.fromARGB(255, 51, 50, 50))),
@@ -119,8 +114,7 @@ class _TextDialogWidgetState extends State<TextDialogWidget> {
               endIndent: 10,
             ),
             Text("Contenido",
-                style: TextStyle(
-                    fontSize: 25, color: Color.fromARGB(255, 15, 96, 162))),
+                style: TextStyle(fontSize: 25, color: Colors.indigo[900])),
             Container(
                 width: 400, height: 200, child: Gallery(images: widget.images)),
           ]),

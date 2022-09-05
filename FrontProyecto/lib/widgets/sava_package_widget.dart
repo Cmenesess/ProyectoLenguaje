@@ -77,7 +77,7 @@ class _SavaPackageWidgetState extends State<SavaPackageWidget> {
                     )),
                     IconButton(
                       icon: Icon(Icons.keyboard_double_arrow_right),
-                      color: Color.fromARGB(255, 15, 96, 162),
+                      color: Colors.indigo[900],
                       onPressed: () async {
                         dynamic images = [];
                         this.widget.details['WarehousePackages'].forEach((v) {
