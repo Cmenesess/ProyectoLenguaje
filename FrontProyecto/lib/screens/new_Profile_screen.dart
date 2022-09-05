@@ -16,14 +16,38 @@ class _ProfilePageState extends State<ProfilePage> {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          buildEspaciador(20),
+          Container(
+            height: 120,
+            padding: EdgeInsets.all(10),
+            alignment: Alignment.center,
+            width: double.infinity,
+            decoration: BoxDecoration(color: Colors.indigo[900], boxShadow: [
+              BoxShadow(
+                offset: Offset(3, 0),
+                spreadRadius: -3,
+                blurRadius: 5,
+                color: Color.fromRGBO(0, 0, 0, 1),
+              )
+            ]),
+            child: SafeArea(
+              child: Text(
+                "Perfil",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          buildEspaciador(40),
           ProfileWidget(
             imagePath: user.imagePath,
             onClicked: () async {},
           ),
-          buildEspaciador(24),
+          buildEspaciador(32),
           buildName(user),
-          buildEspaciador(16),
+          buildEspaciador(32),
           NumbersWidget(),
         ],
       ),
