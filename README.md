@@ -137,4 +137,6 @@ Aqui Definimos las distintas Rutas de la Aplicación MaterialApp
   }
 ```
 ### GIF VIDEO  </br>
+<p align="center">
 ![Alt Text](/Sava.gif)
+  <p>
