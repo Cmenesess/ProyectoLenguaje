@@ -1,11 +1,11 @@
-// ignore_for_file: always_specify_types, prefer_const_declarations, prefer_const_constructors, library_private_types_in_public_api, use_key_in_widget_constructors, avoid_print, prefer_const_literals_to_create_immutables
+// ignore_for_file: always_specify_types, prefer_const_declarations, prefer_const_constructors, library_private_types_in_public_api, use_key_in_widget_constructors, avoid_print, prefer_const_literals_to_create_immutables, always_use_package_imports, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:sava_mobile/utils/user_preferences.dart';
 import 'package:sava_mobile/utils/numbers_widget.dart';
 import 'package:sava_mobile/screens/ProfileWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter/services.dart';
 import '../providers/user_provider.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -24,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {
       _isLoading = true;
     });
-    Future.delayed(Duration(milliseconds: 500), (() async {
+    Future.delayed(Duration.zero, (() async {
       prefs = await SharedPreferences.getInstance();
       token = prefs.getString('token');
       dynamic response = await UserProvider.infoClient(token);
@@ -85,7 +85,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ]),
                     ),
-                    onTap: () => {},
+                    onTap: () async {
+                      prefs = await SharedPreferences.getInstance();
+                      prefs.clear();
+                      Navigator.popAndPushNamed(context, "login");
+                    },
                   )
                 ]),
               ],

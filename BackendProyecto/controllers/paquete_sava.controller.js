@@ -8,6 +8,9 @@ exports.list = async (req, res, next) => {
     db.SavaPackage.findAll({
       where: {
         ClientId: id,
+        status:{
+          [Op.not]: 'Entregado'
+        }
       },
       include: { model: db.WarehousePackage, include: { model: db.Image } },
     }).then((packages) => {

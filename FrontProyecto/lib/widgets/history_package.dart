@@ -14,24 +14,20 @@ class HistoryPackageWidget extends StatelessWidget {
       height: 150,
       width: double.infinity,
       decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey,
-            width: 0.5,
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          ),
+        border: Border.all(
+          color: Colors.grey,
+          width: 0.5,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Paquete " + packageNum.toString(),
-            style: TextStyle(
-              color: Colors.indigo[900],
-              fontWeight: FontWeight.bold,
-              fontSize: 27
-            ),
-            ),
+            style: TextStyle(color: Colors.indigo[900], fontSize: 27),
+          ),
           Row(
             children: [
               Container(

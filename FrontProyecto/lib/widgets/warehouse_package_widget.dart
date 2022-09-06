@@ -54,9 +54,8 @@ class _WarehousePackageWidgetState extends State<WarehousePackageWidget> {
                     Expanded(
                       child: Text(
                         "Paquete",
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Color.fromARGB(255, 40, 133, 210)),
+                        style:
+                            TextStyle(fontSize: 25, color: Colors.indigo[900]),
                       ),
                     ),
                     Container(
@@ -83,8 +82,7 @@ class _WarehousePackageWidgetState extends State<WarehousePackageWidget> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   this.widget.tracking_number,
-                  style: TextStyle(
-                      fontSize: 25, color: Color.fromARGB(255, 115, 123, 130)),
+                  style: TextStyle(fontSize: 25, color: Colors.indigo[900]),
                 ),
               ),
               Padding(
@@ -92,7 +90,7 @@ class _WarehousePackageWidgetState extends State<WarehousePackageWidget> {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: StepProgressIndicator(
                   totalSteps: 10,
-                  currentStep: 6,
+                  currentStep: 2,
                   selectedColor: Color.fromARGB(255, 254, 229, 5),
                   unselectedColor: Color.fromARGB(255, 190, 189, 189),
                 ),
@@ -104,9 +102,7 @@ class _WarehousePackageWidgetState extends State<WarehousePackageWidget> {
                     Expanded(
                         child: Text(
                       "En bodega de Miami",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Color.fromARGB(255, 80, 159, 222)),
+                      style: TextStyle(fontSize: 20, color: Colors.indigo[900]),
                     )),
                     IconButton(
                       icon: Icon(Icons.keyboard_double_arrow_right),

@@ -89,8 +89,8 @@ class _SavaPackagesClientScreenState extends State<SavaPackagesClientScreen> {
                   child: Row(children: [
                     Expanded(
                       child: TextFormField(
+                        keyboardType: TextInputType.number,
                         onChanged: (value) {
-                          print(value);
                           dynamic newList = [];
                           if (value == '') {
                             Future.delayed(Duration.zero, () async {
@@ -122,11 +122,8 @@ class _SavaPackagesClientScreenState extends State<SavaPackagesClientScreen> {
             ],
           ),
         )),
-        Text(
-          "Paquetes Sava",
-          style: TextStyle(fontSize: 30, color: Colors.indigo[900]),
-        ),
         ListView.builder(
+            padding: EdgeInsets.zero,
             controller: ScrollController(),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, must_be_immutable, non_constant_identifier_names, unnecessary_this
 
 import 'dart:ffi';
 
@@ -16,6 +16,15 @@ class SavaPackageWidget extends StatefulWidget {
 
 class _SavaPackageWidgetState extends State<SavaPackageWidget> {
   bool _value = false;
+  int currentStep = 4;
+  @override
+  void initState() {
+    if (this.widget.details['status'] == 'Viajando') {
+      currentStep = 6;
+    } else if (this.widget.details['status'] == 'En oficina') {
+      currentStep = 8;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +61,7 @@ class _SavaPackageWidgetState extends State<SavaPackageWidget> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   this.widget.details['sava_code'],
-                  style: TextStyle(
-                      fontSize: 25, color: Color.fromARGB(255, 0, 0, 0)),
+                  style: TextStyle(fontSize: 25, color: Colors.indigo[900]),
                 ),
               ),
               Padding(
@@ -61,7 +69,7 @@ class _SavaPackageWidgetState extends State<SavaPackageWidget> {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: StepProgressIndicator(
                   totalSteps: 10,
-                  currentStep: 2,
+                  currentStep: currentStep,
                   selectedColor: Color.fromARGB(255, 254, 229, 5),
                   unselectedColor: Color.fromARGB(255, 190, 189, 189),
                 ),

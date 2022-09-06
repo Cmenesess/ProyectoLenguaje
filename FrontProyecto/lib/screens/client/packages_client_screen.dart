@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, always_specify_types, use_build_context_synchronously, unused_local_variable,prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, always_specify_types, use_build_context_synchronously, unused_local_variable,prefer_const_literals_to_create_immutables, unused_field, prefer_final_fields
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +20,7 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
   dynamic packages = [];
   dynamic price = 0.0;
   dynamic packages_availables = [];
+  bool _isLoading = false;
 
   void addPackage(String newId, double addPrice) {
     setState(() {
@@ -41,13 +42,18 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
   @override
   void initState() {
     super.initState();
+    setState(() {
+      _isLoading = true;
+    });
     Future.delayed(Duration.zero, () async {
       prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('token');
       dynamic response =
           await WarehousePackageProvider.getWarehousePackages(token!);
       packages_availables = response;
-      setState(() {});
+      setState(() {
+        _isLoading = false;
+      });
     });
   }
 
@@ -130,56 +136,58 @@ class _PackagesClientScreenState extends State<PackagesClientScreen> {
             ),
           ),
         ),
-      packages_availables.length > 0
-          ? Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(
-                        "Total \$ $price",
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+      _isLoading
+          ? CircularProgressIndicator()
+          : packages_availables.length > 0
+              ? Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Text(
+                            "Total \$ $price",
+                            style: TextStyle(color: Colors.black, fontSize: 20),
+                          ),
+                        ),
                       ),
-                    ),
+                      TextButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.yellow)),
+                        onPressed: () async {
+                          if (packages.length > 0) {
+                            createSava();
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    duration: Duration(seconds: 1),
+                                    content: Text(
+                                        'Debe seleccionar al menos un paquete')));
+                          }
+                        },
+                        child: Text(
+                          "Realizar envio (${packages.length})",
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      )
+                    ],
                   ),
-                  TextButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.yellow)),
-                    onPressed: () async {
-                      if (packages.length > 0) {
-                        createSava();
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                duration: Duration(seconds: 1),
-                                content: Text(
-                                    'Debe seleccionar al menos un paquete')));
-                      }
-                    },
-                    child: Text(
-                      "Realizar envio (${packages.length})",
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  )
-                ],
-              ),
-            )
-          : Padding(
-              padding: const EdgeInsets.symmetric(vertical: 100),
-              child: SizedBox(
-                  width: 300,
-                  child: Text(
-                    "No hay paquetes para enviar",
-                    style: TextStyle(fontSize: 30),
-                    textAlign: TextAlign.center,
-                  )),
-            ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 100),
+                  child: SizedBox(
+                      width: 300,
+                      child: Text(
+                        "No hay paquetes para enviar",
+                        style: TextStyle(fontSize: 30),
+                        textAlign: TextAlign.center,
+                      )),
+                ),
       ListView.builder(
           padding: EdgeInsets.zero,
           controller: ScrollController(),
