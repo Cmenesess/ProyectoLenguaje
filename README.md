@@ -40,16 +40,7 @@ Ejecutar los distintos Scripts SQL para la inicialización de datos y finalmente
 ```
 npm run devstart
 ```
-
-
-
-### Paquetes Dart Utilizados
-
-* [Provider](https://github.com/rrousselGit/provider) (State Management)
-* [Encryption](https://github.com/xxtea/xxtea-dart)
-* [Validation](https://github.com/dart-league/validators)
-* [Notifications](https://github.com/AndreHaueisen/flushbar)
-* [Json Serialization](https://github.com/dart-lang/json_serializable)
+Finalmente estara corriendo en el puerto 4000 el backend
 
 ### Estructura de las carpetas del Backend
 Las Carpetas Core y sus distintos propósitos
@@ -61,11 +52,6 @@ BackendProyecto/
 |- Routes       # Rutas de la REST API
 | app.js        # MAIN APP del Backend
 ```
-
-
-
-
-
 
 
 # Sava Express Mobile
@@ -82,7 +68,6 @@ Dirigirse a la ruta /FrontProyecto/ y ejecutar el comando:
 flutter run 
 ```
 Ejecutar este comando primero importará todas las dependendencias de páquetes de forma automática
-
 
 
 ### Estructura del proyecto
@@ -113,11 +98,10 @@ lib/
 |- main.dart
 ```
 
-
-
 ### Modelos
 
 Las Estructuras de las clases principales del proyecto, cómo son el usuario y los distintos paquetes.
+
 ### Screens
 
 Las distintas pantallas de la aplicación conteniendo los Widgets de Flutter para la creación del UI.
@@ -133,8 +117,6 @@ Contiene los Widgets más complejos de la aplicación, y son separados para pode
 
 El Main del proyecto donde se inicializa la aplicación MaterialApp(), asignandole las rutas de las distintas Screens.
 
-
-
 ### Routes
 
 Aqui Definimos las distintas Rutas de la Aplicación MaterialApp
@@ -149,8 +131,7 @@ Aqui Definimos las distintas Rutas de la Aplicación MaterialApp
       routes: {
         "login": (_) => const LoginScreen(),
         "registration": (_) => const RegistrationScreen(),
-        "home_client": (_) => const HomeClientScreen(),
-        "historial_client": (_) => const HistorialClientScreen()
+        "home_client": (_) => const HomeClientScreen()
       },
     );
   }
