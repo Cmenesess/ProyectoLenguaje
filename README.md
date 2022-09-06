@@ -7,7 +7,7 @@ permitiendo el rastreo, análisis y filtrado de los distintos paquetes desde el 
 
 
 
-## Compilación del Proyecto
+## Compilación del Backend del Proyecto 
 
 **PASO 1:**
 
@@ -67,9 +67,77 @@ BackendProyecto/
 
 
 
+
+# Sava Express Mobile
+
+Aplicación Móvil creada usando el Framework de Flutter para el desarrollo de dispositivos móviles 
+
+## Compilación del proyecto FrontEnd
+
+Previamente a ejecutar los pasos se debe poseer los SDK de Flutter y Android o IOS dependiendo del simlulador que vayan a usar. Tener activado el simulador o conectado un dispositivo móvil.
+**PASO 1:**
+Dirigirse a la ruta /FrontProyecto/ y ejecutar el comando:
+
+```
+flutter run 
+```
+Ejecutar este comando primero importará todas las dependendencias de páquetes de forma automática
+
+
+
+### Estructura del proyecto
+La estrucutra de los directorios Core del proyecto.
+
+```
+FrontProyecto/
+|- android
+|- build
+|- ios
+|- lib
+|- linux
+|- macos
+|- test
+|- web
+|- windows
+```
+
+
+```
+lib/
+|- constants/
+|- models/
+|- providers/
+|- screens/
+|- utils/
+|- widgets/
+|- main.dart
+```
+
+
+
+### Modelos
+
+Las Estructuras de las clases principales del proyecto, cómo son el usuario y los distintos paquetes.
+### Screens
+
+Las distintas pantallas de la aplicación conteniendo los Widgets de Flutter para la creación del UI.
+
+### Providers
+Distintos archivos .dart que realizan la conección a la REST API y Cargan los datos requeridos en formato JSON, en función 
+de las rutas de la API.
+
+### Widgets
+Contiene los Widgets más complejos de la aplicación, y son separados para poder modularizar mejor la aplicación.
+
+### Main
+
+El Main del proyecto donde se inicializa la aplicación MaterialApp(), asignandole las rutas de las distintas Screens.
+
+
+
 ### Routes
 
-This file contains all the routes for your application.
+Aqui Definimos las distintas Rutas de la Aplicación MaterialApp
 
 ```dart
   Widget build(BuildContext context) {
@@ -87,8 +155,5 @@ This file contains all the routes for your application.
     );
   }
 ```
-
-
-
 ### GIF VIDEO  </br>
 ![Alt Text](/Sava.gif)
