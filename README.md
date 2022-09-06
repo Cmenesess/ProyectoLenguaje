@@ -2,45 +2,43 @@
 
 # SAVA EXPRESS
 Una aplicación móvil para la administración de paquetería desde Estados Unidos,
-permitiendo el rastreo
+permitiendo el rastreo, análisis y filtrado de los distintos paquetes desde el almacen.
 
-* For Mobile: https://github.com/zubairehman/flutter-boilerplate-project/tree/master (stable channel)
-* For Web: https://github.com/zubairehman/flutter-boilerplate-project/tree/feature/web-support (beta channel)
 
-## Getting Started
 
-The Boilerplate contains the minimal implementation required to create a new library or project. The repository code is preloaded with some basic components like basic app architecture, app theme, constants and required dependencies to create a new project. By using boiler plate code as standard initializer, we can have same patterns in all the projects that will inherit it. This will also help in reducing setup & development time by allowing you to use same code pattern and avoid re-writing from scratch.
 
-## How to Use 
+## Compilación del Proyecto
 
-**Step 1:**
+**PASO 1:**
 
-Download or clone this repo by using the link below:
+Clonar el repositorio usando el link:
 
 ```
-https://github.com/zubairehman/flutter-boilerplate-project.git
+https://github.com/Cmenesess/ProyectoLenguaje.git
 ```
 
-**Step 2:**
+**PASO 2:**
+Ir a la ruta /BackendProyecto/config/ y configurar el archivo config.json, para poder realizar una correcta 
+conección a la Base de datos.
 
-Go to project root and execute the following command in console to get the required dependencies: 
-
+Después ejecutar el comando:
 ```
-flutter pub get 
-```
-
-**Step 3:**
-
-This project uses `inject` library that works with code generation, execute the following command to generate files:
-
-```
-flutter packages pub run build_runner build --delete-conflicting-outputs
+npm install 
 ```
 
-or watch command in order to keep the source code synced automatically:
+**PASO 3:**
 
+Para realizar las migraciones a la base de datos es imporante tener previamente instalado Sequelize
+para luego ejecutar el comando:
 ```
-flutter packages pub run build_runner watch
+npx sequelize db:migrate
+```
+
+**PASO 4:**
+
+Ejecutar los distintos Scripts SQL para la inicialización de datos y finalmente ejecutar el comando:
+```
+npm run devstart
 ```
 
 
@@ -53,128 +51,21 @@ flutter packages pub run build_runner watch
 * [Notifications](https://github.com/AndreHaueisen/flushbar)
 * [Json Serialization](https://github.com/dart-lang/json_serializable)
 
-### Folder Structure
-Here is the core folder structure which flutter provides.
-
+### Estructura de las carpetas del Backend
+Las Carpetas Core y sus distintos propósitos
 ```
-flutter-app/
-|- android
-|- build
-|- ios
-|- lib
-|- test
-```
-
-Here is the folder structure we have been using in this project
-
-```
-lib/
-|- constants/
-|- data/
-|- stores/
-|- ui/
-|- utils/
-|- widgets/
-|- main.dart
-|- routes.dart
+BackendProyecto/
+|- config       # Archivo de configuración para la base de datos
+|- Controllers  # Controladores ORM de Modelos con Sequelize
+|- Models       # Modelos
+|- Routes       # Rutas de la REST API
+| app.js        # MAIN APP del Backend
 ```
 
-Now, lets dive into the lib folder which has the main code for the application.
 
-```
-1- constants - All the application level constants are defined in this directory with-in their respective files. This directory contains the constants for `theme`, `dimentions`, `api endpoints`, `preferences` and `strings`.
-2- data - Contains the data layer of your project, includes directories for local, network and shared pref/cache.
-3- stores - Contains store(s) for state-management of your application, to connect the reactive data of your application with the UI. 
-4- ui — Contains all the ui of your project, contains sub directory for each screen.
-5- util — Contains the utilities/common functions of your application.
-6- widgets — Contains the common widgets for your applications. For example, Button, TextField etc.
-7- routes.dart — This file contains all the routes for your application.
-8- main.dart - This is the starting point of the application. All the application level configurations are defined in this file i.e, theme, routes, title, orientation etc.
-```
 
-### Constants
 
-This directory contains all the application level constants. A separate file is created for each type as shown in example below:
 
-```
-constants/
-|- app_theme.dart
-|- dimens.dart
-|- endpoints.dart
-|- preferences.dart
-|- strings.dart
-```
-
-### Data
-
-All the business logic of your application will go into this directory, it represents the data layer of your application. It is sub-divided into three directories `local`, `network` and `sharedperf`, each containing the domain specific logic. Since each layer exists independently, that makes it easier to unit test. The communication between UI and data layer is handled by using central repository.
-
-```
-data/
-|- local/
-    |- constants/
-    |- datasources/
-    |- app_database.dart
-   
-|- network/
-    |- constants/
-    |- exceptions/
-    |- rest_client.dart
-    
-|- sharedpref
-    |- constants/
-    |- shared_preference_helper.dart
-    
-|- repository.dart
-
-```
-
-### Stores
-
-The store is where all your application state lives in flutter. The Store is basically a widget that stands at the top of the widget tree and passes it's data down using special methods. In-case of multiple stores, a separate folder for each store is created as shown in the example below:
-
-```
-stores/
-|- login/
-    |- login_store.dart
-    |- form_validator.dart
-```
-
-### UI
-
-This directory contains all the ui of your application. Each screen is located in a separate folder making it easy to combine group of files related to that particular screen. All the screen specific widgets will be placed in `widgets` directory as shown in the example below:
-
-```
-ui/
-|- login
-   |- login_screen.dart
-   |- widgets
-      |- login_form.dart
-      |- login_button.dart
-```
-
-### Utils
-
-Contains the common file(s) and utilities used in a project. The folder structure is as follows: 
-
-```
-utils/
-|- encryption
-   |- xxtea.dart
-|- date
-  |- date_time.dart
-```
-
-### Widgets
-
-Contains the common widgets that are shared across multiple screens. For example, Button, TextField etc.
-
-```
-widgets/
-|- app_icon_widget.dart
-|- empty_app_bar.dart
-|- progress_indicator.dart
-```
 
 ### Routes
 
